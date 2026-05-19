@@ -13,5 +13,5 @@ app.use(express.json());
 app.use("/chat", chatRoutes);
 
 app.listen(3000, () => {
-  console.log("Servidor funcionando en puerto 3000");
+  console.log("Servidor funcionando");
 });

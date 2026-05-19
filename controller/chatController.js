@@ -18,8 +18,7 @@ async function handleChat(req, res) {
   req.body.message || ""
 );
 
-    console.log(userMessage);
-console.log(typeof userMessage);
+  
 
     const userId = req.body.userId;
 

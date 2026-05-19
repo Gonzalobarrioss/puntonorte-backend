@@ -6,6 +6,8 @@ const ai = new GoogleGenAI({
 
 async function generateResponse(userMessage) {
 
+  try {
+
   const response = await ai.models.generateContent({
 
     config: {
@@ -84,7 +86,35 @@ ${userMessage}
 
   return response.text;
 
+  } catch (error) {
+
+    console.error(error);
+
+    // errores Gemini comunes
+
+    if (
+      error.status === 429
+    ) {
+
+      return "Estamos recibiendo muchas consultas ahora mismo 🙌 Probá nuevamente en unos segundos.";
+
+    }
+
+    if (
+      error.status === 503
+    ) {
+
+      return "El asistente está con mucha demanda ahora mismo 🚀 Intentá nuevamente en un momento.";
+
+    }
+
+    return "Ocurrió un problema temporal. Intentá nuevamente más tarde.";
+
+  }
+
 }
+
+
 
 module.exports = {
   generateResponse,
